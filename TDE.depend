@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1654266239 source:c:\users\dib\desktop\tde\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"menu.h"
+	"csvmain.h"
+
+1654265592 c:\users\dib\desktop\tde\menu.h
+
+1654265828 source:c:\users\dib\desktop\tde\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+
+1654266055 c:\users\dib\desktop\tde\csvmain.h
+
