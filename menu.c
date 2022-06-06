@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include "menu.h"
 
@@ -26,7 +27,6 @@ void menu(){
             printf("caso 2");
         break;
         case 3:
-            return SUCCES;
         break;
         default:
             printf("Opcao invalida!\n");

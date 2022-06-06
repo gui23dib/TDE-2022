@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
+#include <string.h>
 #include "csvmain.h"
 
 #define SUCCES 0
 #define ERROR 1
 
 #define FILE_NAME "dados_covid_sp.csv"
-#define LINE_LENGTH 901
+#define LINE_LENGTH 1024
 #define MAX_COLUMNS 28
 #define SEP ";"
 #define MAX_LINES 527200
@@ -15,7 +16,6 @@
 int openfile(FILE *csvfile){
 
     /*setlocale(LC_ALL, "UTF-8");*/
-
     csvfile = fopen(FILE_NAME, "r"); /* modo "r" de abertura permite um arquivo de texto para leitura */
 
     if(csvfile == NULL) {
@@ -33,8 +33,12 @@ int openfile(FILE *csvfile){
     char line[LINE_LENGTH], *header[MAX_COLUMNS], firstline[LINE_LENGTH], *val;
     int columns = 0, i, linenum = 0 /*n_linhas*/, count = 0 /*valores_contados*/;
 
-    /**LE PRIMEIRA LINHA**/
-    fscanf(csvfile, "%s\n" ,line);
+    // Ler todas as linhas do CSV
+    size_t tamanho = 0;
+    char* linha;
+    while(getline(&linha, &tamanho, csvfile)) {
+      printf("%s\n", linha);
+    }
 
     /**Separa o cabecalho**/
     header[columns] = strtok(line, SEP);
@@ -83,7 +87,6 @@ int openfile(FILE *csvfile){
 
     /*Mostra o numero de linhas*/
     printf("\nNumero de linhas %d\n\n\n", linenum);
-
 
     getch();
     return SUCCES;

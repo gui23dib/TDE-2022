@@ -14,7 +14,7 @@ int main()
 
     openfile(csvfile);
 
-    menu();
+    menu(csvfile);
 
     return 0;
 }
