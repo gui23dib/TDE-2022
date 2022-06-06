@@ -11,10 +11,9 @@
 int main()
 {
     FILE *csvfile;
+    char** linhas = openfile(csvfile);
 
-    openfile(csvfile);
-
-    menu(csvfile);
-
+    menu();
+    destroy(linhas);
     return 0;
 }

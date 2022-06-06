@@ -11,16 +11,18 @@
 #define LINE_LENGTH 1024
 #define MAX_COLUMNS 28
 #define SEP ";"
-#define MAX_LINES 527200
 
-int openfile(FILE *csvfile){
+// Le o conteudo do csv. Eh necessario chamar o free(linhas) no final do programa
+// @returns matriz com as linhas
+char** openfile(FILE *csvfile){
+    char** matriz = malloc(FILE_LINES * sizeof(char*));
 
     /*setlocale(LC_ALL, "UTF-8");*/
     csvfile = fopen(FILE_NAME, "r"); /* modo "r" de abertura permite um arquivo de texto para leitura */
 
     if(csvfile == NULL) {
         printf("Erro! O arquivo nao foi aberto devidamente, ou nao foi encontrado...\n");
-        return ERROR;
+        exit(1);
 
     } /*else {
         printf("O arquivo foi executado com sucesso!!!\n");
@@ -30,64 +32,29 @@ int openfile(FILE *csvfile){
 
     }*/
 
-    char line[LINE_LENGTH], *header[MAX_COLUMNS], firstline[LINE_LENGTH], *val;
-    int columns = 0, i, linenum = 0 /*n_linhas*/, count = 0 /*valores_contados*/;
-
-    // Ler todas as linhas do CSV
     size_t tamanho = 0;
+    char* linha_heap;
     char* linha;
-    while(getline(&linha, &tamanho, csvfile)) {
-      printf("%s\n", linha);
+
+    /* 
+     * Ler todas as linhas do CSV 
+     * Armazena todas as linhas dentro de uma matriz
+     */
+    getline(&linha, &tamanho, csvfile);
+    linha_heap = malloc(tamanho * sizeof(char));
+
+    int i;
+    for(i = 0; i < FILE_LINES; ++i){
+      strcpy(linha_heap, linha);
+      matriz[i] = linha_heap;
+
+      getline(&linha, &tamanho, csvfile);
+      linha_heap = malloc(tamanho * sizeof(char));
     }
 
-    /**Separa o cabecalho**/
-    header[columns] = strtok(line, SEP);
-    while(header[columns++] != NULL){
-        header[columns] = strtok(NULL, SEP);
-    }
+    return matriz;
+}
 
-    /**Mostra os valores do cabecalho**/
-    for (i = 0; i < columns; i++){
-        if(i != columns-1){
-            printf("%s\n", header[i]);
-        }
-    }
-
-    float media = 0;
-
-    while(fscanf(csvfile, "%900[^\n]", line)){
-
-        if(linenum == 0){
-            strcpy(firstline, line);
-        }
-
-        /*Primeira Coluna*/
-        val = strtok(line, SEP);
-
-        /*Mostra a primeira linha*/
-        printf("\nPrimeira coluna: %s\n", val);
-
-        /*Segunda Coluna*/
-        val = strtok(NULL, SEP);
-
-        printf("\nSegunda coluna: %s\n", val);
-
-
-        for(i = 0 ; i < 4 ; i++){  /*PULA DA TERCEIRA ATE A SETIMA COLUNA (CASOS NOVOS)*/
-            val = strtok(NULL, SEP);
-        }
-
-        printf("\nSetima coluna: %s\n", val);
-
-        linenum++;
-    }
-
-    /*Mostra a primeira linha*/
-    printf("\nPrimeira Linha: %s\n", firstline);
-
-    /*Mostra o numero de linhas*/
-    printf("\nNumero de linhas %d\n\n\n", linenum);
-
-    getch();
-    return SUCCES;
+void destroy(char** linhas) {
+  free(linhas);
 }
