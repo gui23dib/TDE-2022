@@ -23,14 +23,7 @@ char** openfile(FILE *csvfile){
     if(csvfile == NULL) {
         printf("Erro! O arquivo nao foi aberto devidamente, ou nao foi encontrado...\n");
         exit(1);
-
-    } /*else {
-        printf("O arquivo foi executado com sucesso!!!\n");
-        getch();
-        system("cls");
-        return SUCCES;
-
-    }*/
+    }
 
     size_t tamanho = 0;
     char* linha_heap;
@@ -40,16 +33,12 @@ char** openfile(FILE *csvfile){
      * Ler todas as linhas do CSV 
      * Armazena todas as linhas dentro de uma matriz
      */
-    getline(&linha, &tamanho, csvfile);
-    linha_heap = malloc(tamanho * sizeof(char));
-
     int i;
     for(i = 0; i < FILE_LINES; ++i){
-      strcpy(linha_heap, linha);
-      matriz[i] = linha_heap;
-
       getline(&linha, &tamanho, csvfile);
       linha_heap = malloc(tamanho * sizeof(char));
+      strcpy(linha_heap, linha);
+      matriz[i] = linha_heap;
     }
 
     return matriz;
