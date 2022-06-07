@@ -4,44 +4,54 @@
 #include <string.h>
 #include "csvmain.h"
 
-#define SUCCES 0
-#define ERROR 1
-
-#define FILE_NAME "dados_covid_sp.csv"
-#define LINE_LENGTH 1024
-#define MAX_COLUMNS 28
-#define SEP ";"
-
 // Le o conteudo do csv. Eh necessario chamar o free(linhas) no final do programa
 // @returns matriz com as linhas
-char** openfile(FILE *csvfile){
-    char** matriz = malloc(FILE_LINES * sizeof(char*));
+char** openfile(){
+  char** matriz = malloc(FILE_LINES * sizeof(char*));
 
-    /*setlocale(LC_ALL, "UTF-8");*/
-    csvfile = fopen(FILE_NAME, "r"); /* modo "r" de abertura permite um arquivo de texto para leitura */
+  setlocale(LC_ALL, "Portuguese");
+  FILE *csvfile;
+  csvfile = fopen(FILE_NAME, "r"); /* modo "r" de abertura permite um arquivo de texto para leitura */
 
-    if(csvfile == NULL) {
-        printf("Erro! O arquivo nao foi aberto devidamente, ou nao foi encontrado...\n");
-        exit(1);
-    }
+  if(csvfile == NULL) {
+    printf("Erro! O arquivo nao foi aberto devidamente, ou nao foi encontrado...\n");
+    exit(1);
+  }
 
-    size_t tamanho = 0;
-    char* linha_heap;
-    char* linha;
+  size_t tamanho = 0;
+  char* linha_heap;
+  char* linha;
 
-    /* 
-     * Ler todas as linhas do CSV 
-     * Armazena todas as linhas dentro de uma matriz
-     */
-    int i;
-    for(i = 0; i < FILE_LINES; ++i){
-      getline(&linha, &tamanho, csvfile);
-      linha_heap = malloc(tamanho * sizeof(char));
-      strcpy(linha_heap, linha);
-      matriz[i] = linha_heap;
-    }
+  /* 
+   * Ler todas as linhas do CSV 
+   * Armazena todas as linhas dentro de uma matriz
+   */
+  int i;
+  for(i = 0; i < FILE_LINES; ++i){
+    getline(&linha, &tamanho, csvfile);
+    linha_heap = malloc(tamanho * sizeof(char));
+    strcpy(linha_heap, linha);
+    matriz[i] = linha_heap;
+  }
 
-    return matriz;
+  fclose(csvfile);
+  return matriz;
+}
+
+char*** get_tokens(char** linhas) {
+  char** vetor_linhas;
+  char** tokens;
+  vetor_linhas = malloc(FILE_LINES * sizeof(vetor_linhas));
+  tokens = malloc(MAX_COLUMNS * sizeof(tokens));
+
+  int i;
+  for (i = 0; i < FILE_LINES; ++i) {
+    int j;
+    for (j = 1; j < MAX_COLUMNS; ++j) {
+  }
+}
+
+  return vetor_linhas;
 }
 
 void destroy(char** linhas) {

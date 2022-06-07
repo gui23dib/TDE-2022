@@ -1,17 +1,14 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "menu.h" /*biblioteca customizada*/
 #include "csvmain.h"
 
-#define SUCCES 0
-#define ERROR 1
+#include <stdio.h>
 
 int main()
 {
-    FILE *csvfile;
-    char** linhas = openfile(csvfile);
+    char** linhas = openfile();
+    for (int i = 0; i < FILE_LINES; ++i) {
+      printf("%s\n", linhas[i]);
+    }
 
     menu();
     destroy(linhas);
