@@ -4,5 +4,6 @@
 #include <stdio.h>
 
 int openfile(FILE *csvfile);
+int case1(FILE *csvfile);
 
 #endif // CSVMAIN_H_INCLUDED

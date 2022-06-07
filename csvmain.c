@@ -4,9 +4,6 @@
 #include <string.h>
 #include "csvmain.h"
 
-#define SUCCES 0
-#define ERROR 1
-
 #define FILE_NAME "dados_covid_sp.csv"
 #define LINE_LENGTH 1024
 #define MAX_COLUMNS 28
@@ -19,75 +16,75 @@ int openfile(FILE *csvfile){
 
     if(csvfile == NULL) {
         printf("Erro! O arquivo nao foi aberto devidamente, ou nao foi encontrado...\n");
-        return ERROR;
+        system("pause");
+        exit(EXIT_FAILURE);
+    } else {
+        printf("Arquvio aberto com sucesso!!!\n");
+        system("pause");
+        system("cls");
+        return EXIT_SUCCESS;
     }
+}
 
-    printf("Arquvio aberto com sucesso!!!\n");
+int case1(FILE *csvfile){
 
-    /* Ler todas as linhas do CSV */
-    size_t tamanho = 0;
-    char* linha;
-    getline(&linha, &tamanho, csvfile);
-    printf("%zu\n", tamanho);
-    printf("%s\n", linha);
+    openfile(csvfile);
 
+    char *val, *line_buf = NULL;
+    size_t line_buf_size = 0;
+    int i , line_count = 0;
+    size_t line_size;
+    int contador = 0;
+    float junta;
 
+    char type[30], year[10];
 
-
-
-
-
-
-
+    printf("digite o codigo de cidade: "); /** FAZER VERIFICACOES DE ERRO PARA CODIGO INEXISTENTES **/
+    scanf("%s", &type);
 
 
-    /*
-    header[columns] = strtok(line, SEP);
-    while(header[columns++] != NULL){
-        header[columns] = strtok(NULL, SEP);
-    }
+    printf("digite o ano: ");
+    scanf("%s", &year);
+    strcat(year, "-");
 
-    for (i = 0; i < columns; i++){
-        if(i != columns-1){
-            printf("%s\n", header[i]);
-        }
-    }
+  /* Extrai o cabecalho (primeira linha) */
+  line_size = getline(&line_buf, &line_buf_size, csvfile);
 
-    float media = 0;
+  /* Loop ate o fim do aruivo (EOF) */
+  while (line_size >= 0)
+  {
+    line_count++; /** CONTA A LINHA DO PRINT (((RETIRAR NA VEERSAO FINAL))) **/
 
-    /*while(fscanf(csvfile, "%900[^\n]", line)){
+    /* Estrutura de decisao para filtragem dos dados */
+    if(strstr(line_buf, type) && strstr(line_buf, year)){
+        printf("[%06d] %s", line_count, line_buf);
 
-        if(linenum == 0){
-            strcpy(firstline, line);
-        }
-
-        Primeira Coluna
-        val = strtok(line, SEP);
-
-        Mostra a primeira linha
+        val = strtok(line_buf, SEP);
         printf("\nPrimeira coluna: %s\n", val);
 
-        /*Segunda Coluna
         val = strtok(NULL, SEP);
-
         printf("\nSegunda coluna: %s\n", val);
 
-
-        for(i = 0 ; i < 4 ; i++){  PULA DA TERCEIRA ATE A SETIMA COLUNA (CASOS NOVOS)
+        for(i = 0 ; i < 4 ; i++){  /*PULA DA TERCEIRA ATE A SETIMA COLUNA (CASOS NOVOS)*/
             val = strtok(NULL, SEP);
+            junta = atof(val);
+            contador++;
         }
 
         printf("\nSetima coluna: %s\n", val);
+    }
 
-        linenum++;
-    } */
+    /* Passagem para proxima linha */
+    line_size = getline(&line_buf, &line_buf_size, csvfile);
+  }
 
-    /*Mostra a primeira linha
-    printf("\nPrimeira Linha: %s\n", firstline);
+  /* Desalocamento do ponteiro line_buf */
+  free(line_buf);
+  line_buf = NULL;
 
-    /*Mostra o numero de linhas
-    printf("\nNumero de linhas %d\n\n\n", linenum);*/
+  /* Fim do uso do arquivo */
+  fclose(csvfile);
 
-    getch();
-    return SUCCES;
+
+    return EXIT_SUCCESS;
 }

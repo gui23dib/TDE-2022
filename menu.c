@@ -2,11 +2,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include "menu.h"
+#include "csvmain.h"
 
 #define SUCCES 0
 #define ERROR 1
 
-void menu(){
+void menu(FILE *csvfile){
     int menuchoice;
 
     printf("******************************************************\n");
@@ -21,7 +22,7 @@ void menu(){
 
     switch(menuchoice){
         case 1:
-            printf("caso 1");
+            case1(csvfile);
         break;
         case 2:
             printf("caso 2");
@@ -32,7 +33,7 @@ void menu(){
             printf("Opcao invalida!\n");
             getch();
             system("cls");
-            menu();
+            menu(csvfile);
         break;
     }
 }
