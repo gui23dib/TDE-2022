@@ -19,7 +19,7 @@ int openfile(FILE *csvfile){
         system("pause");
         exit(EXIT_FAILURE);
     } else {
-        printf("Arquvio aberto com sucesso!!!\n");
+        printf("Arquivo aberto com sucesso!!!\n");
         system("pause");
         system("cls");
         return EXIT_SUCCESS;
@@ -28,7 +28,15 @@ int openfile(FILE *csvfile){
 
 int case1(FILE *csvfile){
 
-    openfile(csvfile);
+    csvfile = fopen(FILE_NAME, "r"); /* modo "r" de abertura permite um arquivo de texto para leitura */
+
+    if(csvfile == NULL) {
+        printf("Erro! O arquivo nao foi aberto devidamente, ou nao foi encontrado...\n");
+        system("pause");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("Arquivo aberto com sucesso!!!\n");
 
     char *val, *line_buf = NULL;
     size_t line_buf_size = 0;
@@ -59,19 +67,19 @@ int case1(FILE *csvfile){
     if(strstr(line_buf, type) && strstr(line_buf, year)){
         printf("[%06d] %s", line_count, line_buf);
 
-        val = strtok(line_buf, SEP);
+        /*val = strtok(line_buf, SEP);
         printf("\nPrimeira coluna: %s\n", val);
 
         val = strtok(NULL, SEP);
         printf("\nSegunda coluna: %s\n", val);
 
-        for(i = 0 ; i < 4 ; i++){  /*PULA DA TERCEIRA ATE A SETIMA COLUNA (CASOS NOVOS)*/
+        for(i = 0 ; i < 4 ; i++){
             val = strtok(NULL, SEP);
             junta = atof(val);
             contador++;
         }
 
-        printf("\nSetima coluna: %s\n", val);
+        printf("\nSetima coluna: %s\n", val); */
     }
 
     /* Passagem para proxima linha */
