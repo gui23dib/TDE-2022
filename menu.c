@@ -4,9 +4,6 @@
 #include "menu.h"
 #include "csvmain.h"
 
-#define SUCCES 0
-#define ERROR 1
-
 void menu(FILE *csvfile){
     int menuchoice;
 
@@ -27,15 +24,16 @@ void menu(FILE *csvfile){
         break;
         case 2:
             system("cls");
-            printf("caso 2");
+            case2(csvfile);
         break;
         case 3:
+            exit(EXIT_SUCCESS);
         break;
         default:
             printf("Opcao invalida!\n");
-            getch();
+            getch(); /* Usado para pausar a execucao */
             system("cls");
-            menu(csvfile);
+            menu(csvfile); /* Entra em loop de execucao */
         break;
     }
 }
