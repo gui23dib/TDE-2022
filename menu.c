@@ -13,8 +13,8 @@ void menu(FILE *csvfile){
     printf("******************************************************\n");
     printf("* Pesquisa sobre dados de casos e obitos de COVID-19 *\n");
     printf("******************************************************\n");
-    printf("1 - Pesquisa casos por cidade (codigo do IBGE)\n");
-    printf("2 - Pesquisa obitos por cidade (codigo do IBGE)\n");
+    printf("1 - Pesquisa de media de casos novos por ano e cidade (codigo do IBGE)\n");
+    printf("2 - Pesquisa de media de obitos novos por ano e cidade (codigo do IBGE)\n");
     printf("3 - Sair\n");
     printf("Digite uma opcao: ");
 
@@ -22,9 +22,11 @@ void menu(FILE *csvfile){
 
     switch(menuchoice){
         case 1:
+            system("cls");
             case1(csvfile);
         break;
         case 2:
+            system("cls");
             printf("caso 2");
         break;
         case 3:
