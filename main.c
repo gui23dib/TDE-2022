@@ -3,8 +3,9 @@
 #include <string.h>
 #include <locale.h>
 
-#include "menu.h" /*biblioteca customizada com os conteudos do menu*/
-#include "csvmain.h" /*biblioteca customizada com os conteudos da manipulacao de dados do CSV*/
+/**bibliotecas de usuario**/
+#include "menu.h" /*conteudos do menu*/
+#include "csvmain.h" /*manipulacao de dados do CSV*/
 
 int main(void)
 {
