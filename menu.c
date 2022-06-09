@@ -1,8 +1,9 @@
+/**bibliotecas**/
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "menu.h"
-#include "csvmain.h"
+
+#include "csvmain.h" /*link ao arquivo header*/
 
 void menu(FILE *csvfile){
     int menuchoice;
