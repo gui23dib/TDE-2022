@@ -13,7 +13,9 @@ void menu(FILE *csvfile){
     printf("******************************************************\n");
     printf("1 - Pesquisa de media de casos novos por ano e cidade (codigo do IBGE)\n");
     printf("2 - Pesquisa de media de obitos novos por ano e cidade (codigo do IBGE)\n");
-    printf("3 - Sair\n");
+    printf("2 - Pesquisa de mediana de casos novos por ano e cidade (codigo do IBGE)\n");
+    printf("2 - Pesquisa de mediana de obitos novos por ano e cidade (codigo do IBGE)\n");
+    printf("5 - Sair\n");
     printf("Digite uma opcao: ");
 
     scanf("%i", &menuchoice);
@@ -28,6 +30,14 @@ void menu(FILE *csvfile){
             case2(csvfile);
         break;
         case 3:
+            system("cls");
+            case3(csvfile);
+        break;
+        case 4:
+            system("cls");
+            /*case1(csvfile);*/
+        break;
+        case 5:
             exit(EXIT_SUCCESS);
         break;
         default:
