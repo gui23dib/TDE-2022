@@ -7,8 +7,12 @@
 /**bibliotecas de usuario**/
 #include "csvmain.h" /*conteudos do menu e manipulacao de dados do CSV*/
 
+
+
 int main(void)
 {
+    setlocale(LC_ALL, "UTF-8");
+
     FILE *csvfile;
 
     /*ORIGINAL MAIN*/
