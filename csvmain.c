@@ -14,7 +14,7 @@ char** openfile(){
   csvfile = fopen(FILE_NAME, "r"); /* modo "r" de abertura permite um arquivo de texto para leitura */
 
   if(csvfile == NULL) {
-    printf("Erro! O arquivo nao foi aberto devidamente, ou nao foi encontrado...\n");
+    printf("Erro! O arquivo não foi aberto devidamente, ou não foi encontrado...\n");
     exit(1);
   }
 
