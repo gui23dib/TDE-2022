@@ -12,11 +12,13 @@
 
 int openfile(FILE *csvfile){
 
+    setlocale(LC_ALL, "");
+
     csvfile = fopen(FILENAME, "r"); /* Abre o arquivo do dataset para leitura (apenas) */
 
     if(csvfile == NULL) { /* Verifica o retorno da abertura */
 
-        printf("Erro! O arquivo nao foi aberto devidamente, ou nao foi encontrado...\n");
+        printf("Erro! O arquivo não foi aberto devidamente, ou não foi encontrado...\n");
 
         system("pause");
         exit(EXIT_FAILURE); /* Desliga a aplicacao */
@@ -32,6 +34,8 @@ int openfile(FILE *csvfile){
 
 int case1(FILE *csvfile){
 
+    setlocale(LC_ALL, "");
+
     char *val = NULL, *line_buf = NULL;
     int i, j = 0, k, n;
     size_t line_size, line_buf_size = 0;
@@ -42,13 +46,13 @@ int case1(FILE *csvfile){
         scanf("%s", &year);
 
         if(atof(year) < 2020 || atof(year) > 2022){ /* Verificacao direta (ja que o dataset so consta dados de 2020 ate 2022) */
-            printf("Ano invalido, nao existem dados correspondentes a %s, tente novamente\n", year);
+            printf("Ano inválido, não existem dados correspondentes a %s, tente novamente\n", year);
             system("pause");
             return EXIT_FAILURE;
         }
     strcat(year, "-"); /* Adiciona a formatacao para que haja concordancia com a formatacao das datas do arquivo */
 
-    printf("Digite o numero de codigos a serem inseridos: ");
+    printf("Digite o número de códigos a serem inseridos: ");
     scanf("%i", &n); /* Determina sempre o numero de casos sendo usados assim servindo como parametro dos loops FOR */
     char type[n][10], aux[10], citycodename[n][40];
 
@@ -59,13 +63,13 @@ int case1(FILE *csvfile){
 
         verfile = fopen("codigoibgever.txt", "r"); /* Abre arquivo de verificacao para codigos validos do IBGE */
         if(verfile == NULL){ /* Codigo de erro para falha no arquivo */
-            printf("Erro! O arquivo de verificacao (codigoibgever.txt) nao foi encontrado...\n");
+            printf("Erro! O arquivo de verificação (codigoibgever.txt) não foi encontrado...\n");
             system("pause");
             return EXIT_FAILURE;
         }
 
         veri[i] = 0; /* Esvazia a variavel atual veri[i] */
-        printf("Digite o codigo da cidade %i: ", i+1);
+        printf("Digite o código da cidade %i: ", i+1);
         scanf("%s", &type[i]);
 
         line_size = 1;
@@ -89,7 +93,7 @@ int case1(FILE *csvfile){
 
     for(i = 0 ; i < n ; i++){
         if(veri[i] == 0){ /* Faz a verificacao 1 ou 0 para codigos invalidos */
-            printf("\nCodigo (%s) invalido, visite https://www.ibge.gov.br/explica/codigos-dos-municipios.php#SP para verificar os codigos validos dos municipios de Sao Paulo\n", type[i]);
+            printf("\nCódigo (%s) inválido, visite https://www.ibge.gov.br/explica/codigos-dos-municipios.php#SP para verificar os códigos válidos dos municípios de São Paulo\n", type[i]);
             system("pause");
             return EXIT_FAILURE;
         }
@@ -142,13 +146,13 @@ int case1(FILE *csvfile){
             }
         }
     }
-    printf("Concluido!!! \n");
+    printf("Concluído!!! \n");
 
     system("pause");
     system("cls");
 
     year[strlen(year)-1] = '\0'; /* Retira a concatenacao anterior de "-" para impressao */
-    printf("Media de casos novos por cidade e ano\n");
+    printf("Média de casos novos por cidade e ano\n");
     printf("Ano: %s\n\n", year);
 
     for(i = 0 ; i < n ; i++){
@@ -175,7 +179,7 @@ int case1(FILE *csvfile){
 
         FILE* newfile  = fopen ("savedfile.csv", "w"); /* Criacao e abertura do arquivo csv para escrever*/
 
-        fprintf(newfile, "Media de casos novos por cidade e ano\n");
+        fprintf(newfile, "Média de casos novos por cidade e ano\n");
         fprintf(newfile, "Ano: %s\n", year);
 
         for(i = 0 ; i < n ; i++){
@@ -197,7 +201,7 @@ int case1(FILE *csvfile){
         resetfunction(csvfile);
 
     } else {
-        printf("Opcao invalida, retornando ao menu . . .\n");
+        printf("Opção inválida, retornando ao menu . . .\n");
         getch(); /* Getch sem atribuicao para pausa curta no programa */
         system("cls");
         menu(csvfile);
@@ -212,6 +216,8 @@ int case1(FILE *csvfile){
 
 int case2(FILE *csvfile){
 
+    setlocale(LC_ALL, "");
+
     char *val = NULL, *line_buf = NULL;
     int i, j = 0, k, n;
     size_t line_size, line_buf_size = 0;
@@ -222,14 +228,14 @@ int case2(FILE *csvfile){
     scanf("%s", &year);
 
     if(atof(year) < 2020 || atof(year) > 2022){ /* Verificacao direta (ja que o dataset so consta dados de 2020 ate 2022) */
-        printf("Ano invalido, nao existem dados correspondentes a %s, tente novamente\n", year);
+        printf("Ano inválido, não existem dados correspondentes a %s, tente novamente\n", year);
         system("pause");
         return EXIT_FAILURE;
     }
     strcat(year, "-"); /* Adiciona a formatacao para que haja concordancia com a formatacao das datas do arquivo */
 
 
-    printf("Digite o numero de codigos a serem inseridos: ");
+    printf("Digite o número de códigos a serem inseridos: ");
     scanf("%i", &n); /* Determina sempre o numero de casos sendo usados assim servindo como parametro dos loops FOR */
     char type[n][10], aux[10], citycodename[n][40];
 
@@ -240,13 +246,13 @@ int case2(FILE *csvfile){
 
         verfile = fopen("codigoibgever.txt", "r"); /* Abre arquivo de verificacao para codigos validos do IBGE */
         if(verfile == NULL){ /* Codigo de erro para falha no arquivo */
-            printf("Erro! O arquivo de verificacao (codigoibgever.txt) nao foi encontrado...\n");
+            printf("Erro! O arquivo de verificação (codigoibgever.txt) não foi encontrado...\n");
             system("pause");
             return EXIT_FAILURE;
         }
 
         veri[i] = 0; /* Esvazia a variavel atual veri[i] */
-        printf("Digite o codigo da cidade %i: ", i+1);
+        printf("Digite o código da cidade %i: ", i+1);
         scanf("%s", &type[i]);
 
         line_size = 1;
@@ -255,7 +261,7 @@ int case2(FILE *csvfile){
 
         while (line_size >= 0){
             if(getline(&line_buf, &line_buf_size, verfile) > 0){ /* Leitura (linha por linha) do arquivo */
-                if(strstr(line_buf, aux) != NULL){ /* Comparacao com o arquivo de verificacao, se sim, armazena o valor 1 na variavel veri[i] como "VERDADEIRO" */
+                if(strstr(line_buf, aux) != NULL && strlen(aux) == 7){ /* Comparacao com o arquivo de verificacao, se sim, armazena o valor 1 na variavel veri[i] como "VERDADEIRO" */
                     val = strtok(line_buf, "3");
                     strcpy(citycodename[i], val);
 
@@ -270,7 +276,7 @@ int case2(FILE *csvfile){
 
     for(i = 0 ; i < n ; i++){
         if(veri[i] == 0){ /* Faz a verificacao 1 ou 0 para codigos invalidos */
-            printf("\nCodigo (%s) invalido, visite https://www.ibge.gov.br/explica/codigos-dos-municipios.php#SP para verificar os codigos validos dos municipios de Sao Paulo\n", type[i]);
+            printf("\nCódigo (%s) inválido, visite https://www.ibge.gov.br/explica/codigos-dos-municipios.php#SP para verificar os códigos válidos dos municípios de São Paulo\n", type[i]);
             system("pause");
             return EXIT_FAILURE;
         }
@@ -323,13 +329,13 @@ int case2(FILE *csvfile){
             }
         }
     }
-    printf("Concluido!!! \n");
+    printf("Concluído!!! \n");
 
     system("pause");
     system("cls");
 
     year[strlen(year)-1] = '\0'; /* Retira a concatenacao anterior de "-" para impressao */
-    printf("Media de obitos novos por cidade e ano\n");
+    printf("Média de óbitos novos por cidade e ano\n");
     printf("Ano: %s\n\n", year);
 
     for(i = 0 ; i < n ; i++){
@@ -356,7 +362,7 @@ int case2(FILE *csvfile){
 
         FILE* newfile  = fopen ("savedfile.csv", "w"); /* Criacao e abertura do arquivo csv para escrever*/
 
-        fprintf(newfile, "Media de obitos novos por cidade e ano\n");
+        fprintf(newfile, "Media de óbitos novos por cidade e ano\n");
         fprintf(newfile, "Ano: %s\n", year);
 
         for(i = 0 ; i < n ; i++){
@@ -378,7 +384,7 @@ int case2(FILE *csvfile){
         resetfunction(csvfile);
 
     } else {
-        printf("Opcao invalida, retornando ao menu . . .\n");
+        printf("Opção inválida, retornando ao menu . . .\n");
         getch(); /* Getch sem atribuicao para pausa curta no programa */
         system("cls");
         menu(csvfile);
@@ -393,6 +399,8 @@ int case2(FILE *csvfile){
 
 int case3(FILE *csvfile){
 
+    setlocale(LC_ALL, "");
+
     char *val = NULL, *line_buf = NULL;
     int i, j = 0, k, n;
     size_t line_size, line_buf_size = 0;
@@ -403,14 +411,14 @@ int case3(FILE *csvfile){
     scanf("%s", &year);
 
     if(atof(year) < 2020 || atof(year) > 2022){ /* Verificacao direta (ja que o dataset so consta dados de 2020 ate 2022) */
-        printf("Ano invalido, nao existem dados correspondentes a %s, tente novamente\n", year);
+        printf("Ano inválido, não existem dados correspondentes a %s, tente novamente\n" , year);
         system("pause");
         return EXIT_FAILURE;
     }
     strcat(year, "-"); /* Adiciona a formatacao para que haja concordancia com a formatacao das datas do arquivo */
 
 
-    printf("Digite o numero de codigos a serem inseridos: ");
+    printf("Digite o número de códigos a serem inseridos: ");
     scanf("%i", &n); /* Determina sempre o numero de casos sendo usados assim servindo como parametro dos loops FOR */
     char type[n][10], aux[10], citycodename[n][40];
 
@@ -421,13 +429,13 @@ int case3(FILE *csvfile){
 
         verfile = fopen("codigoibgever.txt", "r"); /* Abre arquivo de verificacao para codigos validos do IBGE */
         if(verfile == NULL){ /* Codigo de erro para falha no arquivo */
-            printf("Erro! O arquivo de verificacao (codigoibgever.txt) nao foi encontrado...\n");
+            printf("Erro! O arquivo de verificação (codigoibgever.txt) não foi encontrado...\n");
             system("pause");
             return EXIT_FAILURE;
         }
 
         veri[i] = 0; /* Esvazia a variavel atual veri[i] */
-        printf("Digite o codigo da cidade %i: ", i+1);
+        printf("Digite o código da cidade %i: ", i+1);
         scanf("%s", &type[i]);
 
         line_size = 1;
@@ -436,7 +444,7 @@ int case3(FILE *csvfile){
 
         while (line_size >= 0){
             if(getline(&line_buf, &line_buf_size, verfile) > 0){ /* Leitura (linha por linha) do arquivo */
-                if(strstr(line_buf, aux) != NULL){ /* Comparacao com o arquivo de verificacao, se sim, armazena o valor 1 na variavel veri[i] como "VERDADEIRO" */
+                if(strstr(line_buf, aux) != NULL && strlen(aux) == 7){ /* Comparacao com o arquivo de verificacao, se sim, armazena o valor 1 na variavel veri[i] como "VERDADEIRO" */
                     val = strtok(line_buf, "3");
                     strcpy(citycodename[i], val);
 
@@ -451,7 +459,7 @@ int case3(FILE *csvfile){
 
     for(i = 0 ; i < n ; i++){
         if(veri[i] == 0){ /* Faz a verificacao 1 ou 0 para codigos invalidos */
-            printf("\nCodigo (%s) invalido, visite https://www.ibge.gov.br/explica/codigos-dos-municipios.php#SP para verificar os codigos validos dos municipios de Sao Paulo\n", type[i]);
+            printf("\nCódigo (%s) inválido, visite https://www.ibge.gov.br/explica/codigos-dos-municipios.php#SP para verificar os códigos válidos dos municípios de São Paulo\n", type[i]);
             system("pause");
             return EXIT_FAILURE;
         }
@@ -489,11 +497,11 @@ int case3(FILE *csvfile){
 
                 j++; /* Contador de linhas que passaram na filtragem */
 
-                for(k = 0 ; k < 6 ; k++){
+                for(k = 0 ; k < 5 ; k++){
                     val = strtok(NULL, SEP); /* Pula ate a coluna desejada */
                 }
 
-                singleline[i][j] = atof(val);
+                singleline[i][j] = atof(val); /* Atribuicao dos valores em float para a matriz singleline */
 
             }
 
@@ -506,23 +514,24 @@ int case3(FILE *csvfile){
         }
     }
 
-    printf("Concluido!!! \n");
+    printf("Concluído!!! \n");
 
     system("pause");
     system("cls");
 
-    int troca, exaux;
+    int exaux;
 
-    for(k = 0 ; k < n ; k++){
+    for(k = 0 ; k < n ; k++){ /* Loop de ordenacao para cada caso */
 
-        qsort(singleline[k], n, sizeof(int), cmpfunc);
+        qsort(singleline[k], n, sizeof(int), cmpfunc); /* Funcao qsort() para ordenacao rapida dos elementos do caso */
 
+        /* Define o meio ou a media dos valores do meio de acordo com a regra da mediana */
         if(contador[k] % 2 == 0){
             exaux = contador[k]/2;
             result[k] = (singleline[k][exaux] + singleline[k][exaux+1])/2;
         } else {
             exaux = (contador[k]+1)/2;
-            result[k] = singleline[k][exaux];
+            result[k] = singleline[k][exaux]; /* Atribuicao da mediana para o vetor result */
         }
 
     }
@@ -578,7 +587,7 @@ int case3(FILE *csvfile){
         resetfunction(csvfile);
 
     } else {
-        printf("Opcao invalida, retornando ao menu . . .\n");
+        printf("Opção inválida, retornando ao menu . . .\n");
         getch(); /* Getch sem atribuicao para pausa curta no programa */
         system("cls");
         menu(csvfile);
@@ -593,6 +602,8 @@ int case3(FILE *csvfile){
 
 int case4(FILE *csvfile){
 
+    setlocale(LC_ALL, "");
+
     char *val = NULL, *line_buf = NULL;
     int i, j = 0, k, n;
     size_t line_size, line_buf_size = 0;
@@ -603,14 +614,14 @@ int case4(FILE *csvfile){
     scanf("%s", &year);
 
     if(atof(year) < 2020 || atof(year) > 2022){ /* Verificacao direta (ja que o dataset so consta dados de 2020 ate 2022) */
-        printf("Ano invalido, nao existem dados correspondentes a %s, tente novamente\n", year);
+        printf("Ano inválido, não existem dados correspondentes a %s, tente novamente\n", year);
         system("pause");
         return EXIT_FAILURE;
     }
     strcat(year, "-"); /* Adiciona a formatacao para que haja concordancia com a formatacao das datas do arquivo */
 
 
-    printf("Digite o numero de codigos a serem inseridos: ");
+    printf("Digite o número de códigos a serem inseridos: ");
     scanf("%i", &n); /* Determina sempre o numero de casos sendo usados assim servindo como parametro dos loops FOR */
     char type[n][10], aux[10], citycodename[n][40];
 
@@ -621,13 +632,13 @@ int case4(FILE *csvfile){
 
         verfile = fopen("codigoibgever.txt", "r"); /* Abre arquivo de verificacao para codigos validos do IBGE */
         if(verfile == NULL){ /* Codigo de erro para falha no arquivo */
-            printf("Erro! O arquivo de verificacao (codigoibgever.txt) nao foi encontrado...\n");
+            printf("Erro! O arquivo de verificação (codigoibgever.txt) não foi encontrado...\n");
             system("pause");
             return EXIT_FAILURE;
         }
 
         veri[i] = 0; /* Esvazia a variavel atual veri[i] */
-        printf("Digite o codigo da cidade %i: ", i+1);
+        printf("Digite o código da cidade %i: ", i+1);
         scanf("%s", &type[i]);
 
         line_size = 1;
@@ -636,7 +647,7 @@ int case4(FILE *csvfile){
 
         while (line_size >= 0){
             if(getline(&line_buf, &line_buf_size, verfile) > 0){ /* Leitura (linha por linha) do arquivo */
-                if(strstr(line_buf, aux) != NULL){ /* Comparacao com o arquivo de verificacao, se sim, armazena o valor 1 na variavel veri[i] como "VERDADEIRO" */
+                if(strstr(line_buf, aux) != NULL && strlen(aux) == 7){ /* Comparacao com o arquivo de verificacao, se sim, armazena o valor 1 na variavel veri[i] como "VERDADEIRO" */
                     val = strtok(line_buf, "3");
                     strcpy(citycodename[i], val);
 
@@ -651,7 +662,7 @@ int case4(FILE *csvfile){
 
     for(i = 0 ; i < n ; i++){
         if(veri[i] == 0){ /* Faz a verificacao 1 ou 0 para codigos invalidos */
-            printf("\nCodigo (%s) invalido, visite https://www.ibge.gov.br/explica/codigos-dos-municipios.php#SP para verificar os codigos validos dos municipios de Sao Paulo\n", type[i]);
+            printf("\nCódigo (%s) inválido, visite https://www.ibge.gov.br/explica/codigos-dos-municipios.php#SP para verificar os códigos válidos dos municípios de São Paulo\n", type[i]);
             system("pause");
             return EXIT_FAILURE;
         }
@@ -689,11 +700,11 @@ int case4(FILE *csvfile){
 
                 j++; /* Contador de linhas que passaram na filtragem */
 
-                for(k = 0 ; k < 8 ; k++){
+                for(k = 0 ; k < 9 ; k++){
                     val = strtok(NULL, SEP); /* Pula ate a coluna desejada */
                 }
 
-                singleline[i][j] = atof(val);
+                singleline[i][j] = atof(val); /* Atribuicao dos valores em float para a matriz singleline */
 
             }
 
@@ -706,30 +717,31 @@ int case4(FILE *csvfile){
         }
     }
 
-    printf("Concluido!!! \n");
+    printf("Concluído!!! \n");
 
     system("pause");
     system("cls");
 
     int troca, exaux;
 
-    for(k = 0 ; k < n ; k++){
+    for(k = 0 ; k < n ; k++){ /* Loop de ordenacao para cada caso */
 
-        qsort(singleline[k], n, sizeof(int), cmpfunc);
+        qsort(singleline[k], n, sizeof(int), cmpfunc); /* Funcao qsort() para ordenacao rapida dos elementos do caso */
 
+        /* Define o meio ou a media dos valores do meio de acordo com a regra da mediana */
         if(contador[k] % 2 == 0){
             exaux = contador[k]/2;
             result[k] = (singleline[k][exaux] + singleline[k][exaux+1])/2;
         } else {
             exaux = (contador[k]+1)/2;
-            result[k] = singleline[k][exaux];
+            result[k] = singleline[k][exaux];  /* Atribuicao da mediana para o vetor result */
         }
 
     }
 
 
     year[strlen(year)-1] = '\0'; /* Retira a concatenacao anterior de "-" para impressao */
-    printf("Mediana de obitos novos por cidade e ano\n");
+    printf("Mediana de óbitos novos por cidade e ano\n");
     printf("Ano: %s\n\n", year);
 
     for(i = 0 ; i < n ; i++){
@@ -778,7 +790,7 @@ int case4(FILE *csvfile){
         resetfunction(csvfile);
 
     } else {
-        printf("Opcao invalida, retornando ao menu . . .\n");
+        printf("Opção inválida, retornando ao menu . . .\n");
         getch(); /* Getch sem atribuicao para pausa curta no programa */
         system("cls");
         menu(csvfile);
@@ -807,5 +819,5 @@ void resetfunction(FILE *csvfile){
 }
 
 int cmpfunc (const void * a, const void * b) {
-   return ( *(int*)a - *(int*)b );
+   return ( *(int*)a - *(int*)b ); /* Funcao de retorno para parametros qsort() */
 }

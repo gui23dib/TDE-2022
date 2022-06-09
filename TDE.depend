@@ -15,7 +15,7 @@
 
 1654266055 c:\users\dib\desktop\tde\csvmain.h
 
-1654806082 source:c:\users\dib\documents\github\tde-1semestre\main.c
+1654816875 source:c:\users\dib\documents\github\tde-1semestre\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -24,16 +24,17 @@
 
 1654635177 c:\users\dib\documents\github\tde-1semestre\menu.h
 
-1654807031 c:\users\dib\documents\github\tde-1semestre\csvmain.h
+1654812191 c:\users\dib\documents\github\tde-1semestre\csvmain.h
 	<stdio.h>
 
-1654807891 source:c:\users\dib\documents\github\tde-1semestre\menu.c
+1654812344 source:c:\users\dib\documents\github\tde-1semestre\menu.c
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
+	<locale.h>
 	"csvmain.h"
 
-1654808130 source:c:\users\dib\documents\github\tde-1semestre\csvmain.c
+1654817423 source:c:\users\dib\documents\github\tde-1semestre\csvmain.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
