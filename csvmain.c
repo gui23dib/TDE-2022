@@ -47,7 +47,7 @@ int case1(FILE *csvfile){
 
     printf("Digite o numero de codigos a serem inseridos: ");
     scanf("%i", &n); /* Determina sempre o numero de casos sendo usados assim servindo como parametro dos loops FOR */
-    char type[n][10], aux[10];
+    char type[n][10], aux[10], citycodename[n][40];
 
 
     FILE *verfile;
@@ -72,6 +72,9 @@ int case1(FILE *csvfile){
         while (line_size >= 0){
             if(getline(&line_buf, &line_buf_size, verfile) > 0){ /* Leitura (linha por linha) do arquivo */
                 if(strstr(line_buf, aux) != NULL){ /* Comparacao com o arquivo de verificacao, se sim, armazena o valor 1 na variavel veri[i] como "VERDADEIRO" */
+                    val = strtok(line_buf, "3");
+                    strcpy(citycodename[i], val);
+
                     veri[i] = 1;
                 }
             } else {
@@ -146,7 +149,11 @@ int case1(FILE *csvfile){
 
     for(i = 0 ; i < n ; i++){
         type[i][strlen(type[i])-1] = '\0'; /* Tira a formatacao do separador da type[i] */
-        printf("MEDIA CIDADE %i (%s): %.2f\n", (i+1), type[i], result[i]); /** MUDAR PRINT PARA NOME DA CIDADE **/
+        printf("%s", citycodename[i]);
+        for(k = 0 ; k < (30-strlen(citycodename[i])) ; k++){ /* Padronizacao dos espacos entre os prints */
+            printf(" ");
+        }
+        printf("%.2f\n", result[i]);
     }
 
     printf("\nDeseja salvar esse resultado (S/N)? ");
@@ -166,8 +173,13 @@ int case1(FILE *csvfile){
 
         fprintf(newfile, "Media de casos novos por cidade e ano\n");
         fprintf(newfile, "Ano: %s\n;", year);
+
         for(i = 0 ; i < n ; i++){
-            fprintf(newfile, "MEDIA CIDADE %i (%s): %.2f\n;", (i+1), type[i], result[i]);
+            fprintf(newfile, "%s", citycodename[i]);
+            for(k = 0 ; k < (30-strlen(citycodename[i])) ; k++){ /* Padronizacao dos espacos entre os prints */
+                fprintf(newfile, " ");
+            }
+            fprintf(newfile, "%.2f\n", result[i]);
         }
 
         fclose(newfile);
