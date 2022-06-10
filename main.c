@@ -13,7 +13,7 @@
 * Kadish Bernardo Ribeiro da Silva (1673604)
 * Miguel Lima do Nascimento (7408743)
 * Murilo Mendes Santo Sardao (7176953)
-* Thiago de Andrade Prado ()
+* Thiago de Andrade Prado (3821314)
 */
 
 int main(void)

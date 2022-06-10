@@ -54,6 +54,12 @@ int case1(FILE *csvfile){
 
     printf("Digite o número de códigos a serem inseridos: ");
     scanf("%i", &n); /* Determina sempre o numero de casos sendo usados assim servindo como parametro dos loops FOR */
+    if(n <= 0){
+        printf("\nNúmero inválido. . . \n");
+        system("pause");
+        return(EXIT_FAILURE);
+    }
+
     char type[n][10], aux[10], citycodename[n][40];
 
 
@@ -179,15 +185,10 @@ int case1(FILE *csvfile){
 
         FILE* newfile  = fopen ("savedfile.csv", "w"); /* Criacao e abertura do arquivo csv para escrever*/
 
-        fprintf(newfile, "Média de casos novos por cidade e ano\n");
-        fprintf(newfile, "Ano: %s\n", year);
-
+        fprintf(newfile, "ano;cidade_nome;media_casos_novos\n");
         for(i = 0 ; i < n ; i++){
-            fprintf(newfile, "%s", citycodename[i]);
-            for(k = 0 ; k < (30-strlen(citycodename[i])) ; k++){ /* Padronizacao dos espacos entre os prints */
-                fprintf(newfile, " ");
-            }
-            fprintf(newfile, "%.2f\n", result[i]);
+            citycodename[i][strlen(citycodename[i])-1] = '\0';
+            fprintf(newfile, "%s;%s;%.2f\n", year, citycodename[i], result[i]);
         }
 
         fclose(newfile);
@@ -237,6 +238,12 @@ int case2(FILE *csvfile){
 
     printf("Digite o número de códigos a serem inseridos: ");
     scanf("%i", &n); /* Determina sempre o numero de casos sendo usados assim servindo como parametro dos loops FOR */
+    if(n <= 0){
+        printf("\nNúmero inválido. . . \n");
+        system("pause");
+        return(EXIT_FAILURE);
+    }
+
     char type[n][10], aux[10], citycodename[n][40];
 
 
@@ -362,15 +369,10 @@ int case2(FILE *csvfile){
 
         FILE* newfile  = fopen ("savedfile.csv", "w"); /* Criacao e abertura do arquivo csv para escrever*/
 
-        fprintf(newfile, "Media de óbitos novos por cidade e ano\n");
-        fprintf(newfile, "Ano: %s\n", year);
-
+        fprintf(newfile, "ano;cidade_nome;media_obitos_novos\n");
         for(i = 0 ; i < n ; i++){
-            fprintf(newfile, "%s", citycodename[i]);
-            for(k = 0 ; k < (30-strlen(citycodename[i])) ; k++){ /* Padronizacao dos espacos entre os prints */
-                fprintf(newfile, " ");
-            }
-            fprintf(newfile, "%.2f\n", result[i]);
+            citycodename[i][strlen(citycodename[i])-1] = '\0';
+            fprintf(newfile, "%s;%s;%.2f\n", year, citycodename[i], result[i]);
         }
 
         fclose(newfile);
@@ -420,6 +422,12 @@ int case3(FILE *csvfile){
 
     printf("Digite o número de códigos a serem inseridos: ");
     scanf("%i", &n); /* Determina sempre o numero de casos sendo usados assim servindo como parametro dos loops FOR */
+    if(n <= 0){
+        printf("\nNúmero inválido. . . \n");
+        system("pause");
+        return(EXIT_FAILURE);
+    }
+
     char type[n][10], aux[10], citycodename[n][40];
 
 
@@ -565,15 +573,10 @@ int case3(FILE *csvfile){
 
         FILE* newfile  = fopen ("savedfile.csv", "w"); /* Criacao e abertura do arquivo csv para escrever*/
 
-        fprintf(newfile, "Mediana de casos novos por cidade e ano\n");
-        fprintf(newfile, "Ano: %s\n", year);
-
+        fprintf(newfile, "ano;cidade_nome;mediana_casos_novos\n");
         for(i = 0 ; i < n ; i++){
-            fprintf(newfile, "%s", citycodename[i]);
-            for(k = 0 ; k < (30-strlen(citycodename[i])) ; k++){ /* Padronizacao dos espacos entre os prints */
-                fprintf(newfile, " ");
-            }
-            fprintf(newfile, "%.2f\n", result[i]);
+            citycodename[i][strlen(citycodename[i])-1] = '\0';
+            fprintf(newfile, "%s;%s;%.2f\n", year, citycodename[i], result[i]);
         }
 
         fclose(newfile);
@@ -623,6 +626,12 @@ int case4(FILE *csvfile){
 
     printf("Digite o número de códigos a serem inseridos: ");
     scanf("%i", &n); /* Determina sempre o numero de casos sendo usados assim servindo como parametro dos loops FOR */
+    if(n <= 0){
+        printf("\nNúmero inválido. . . \n");
+        system("pause");
+        return(EXIT_FAILURE);
+    }
+
     char type[n][10], aux[10], citycodename[n][40];
 
 
@@ -768,15 +777,10 @@ int case4(FILE *csvfile){
 
         FILE* newfile  = fopen ("savedfile.csv", "w"); /* Criacao e abertura do arquivo csv para escrever*/
 
-        fprintf(newfile, "Mediana de obitos novos por cidade e ano\n");
-        fprintf(newfile, "Ano: %s\n", year);
-
+        fprintf(newfile, "ano;cidade_nome;mediana_obitos_novos\n");
         for(i = 0 ; i < n ; i++){
-            fprintf(newfile, "%s", citycodename[i]);
-            for(k = 0 ; k < (30-strlen(citycodename[i])) ; k++){ /* Padronizacao dos espacos entre os prints */
-                fprintf(newfile, " ");
-            }
-            fprintf(newfile, "%.2f\n", result[i]);
+            citycodename[i][strlen(citycodename[i])-1] = '\0';
+            fprintf(newfile, "%s;%s;%.2f\n", year, citycodename[i], result[i]);
         }
 
         fclose(newfile);
@@ -819,5 +823,5 @@ void resetfunction(FILE *csvfile){
 }
 
 int cmpfunc (const void * a, const void * b) {
-   return ( *(int*)a - *(int*)b ); /* Funcao de retorno para parametros qsort() */
+   return ( *(float*)a - *(float*)b ); /* Funcao de retorno para parametros qsort() */
 }
