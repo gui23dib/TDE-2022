@@ -1,38 +1,54 @@
+/**bibliotecas**/
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "menu.h"
+#include <locale.h>
 
-#define SUCCES 0
-#define ERROR 1
+#include "csvmain.h" /*link ao arquivo header*/
 
-void menu(){
+void menu(FILE *csvfile){
     int menuchoice;
+    setlocale(LC_ALL, "");
 
     printf("******************************************************\n");
-    printf("* Pesquisa sobre dados de casos e obitos de COVID-19 *\n");
+    printf("* Pesquisa sobre dados de casos e óbitos de COVID-19 *\n");
     printf("******************************************************\n");
-    printf("1 - Pesquisa casos por cidade (codigo do IBGE)\n");
-    printf("2 - Pesquisa obitos por cidade (codigo do IBGE)\n");
-    printf("3 - Sair\n");
-    printf("Digite uma opcao: ");
+    printf("1 - Pesquisa de média de casos novos por ano e cidade (código do IBGE)\n");
+    printf("2 - Pesquisa de média de óbitos novos por ano e cidade (código do IBGE)\n");
+    printf("3 - Pesquisa de mediana de casos novos por ano e cidade (código do IBGE)\n");
+    printf("4 - Pesquisa de mediana de óbitos novos por ano e cidade (código do IBGE)\n");
+    printf("5 - Sair\n");
+    printf("Digite uma opção: ");
 
     scanf("%i", &menuchoice);
 
-    switch(menuchoice){
-        case 1:
-            printf("caso 1");
-        break;
-        case 2:
-            printf("caso 2");
-        break;
-        case 3:
-        break;
-        default:
-            printf("Opcao invalida!\n");
-            getch();
-            system("cls");
-            menu();
-        break;
-    }
+    do{
+        switch(menuchoice){
+            case 1:
+                system("cls");
+                case1(csvfile);
+            break;
+            case 2:
+                system("cls");
+                case2(csvfile);
+            break;
+            case 3:
+                system("cls");
+                case3(csvfile);
+            break;
+            case 4:
+                system("cls");
+                case4(csvfile);
+            break;
+            case 5:
+                exit(EXIT_SUCCESS);
+            break;
+            default:
+                printf("Opção inválida!\n");
+                getch(); /* Usado para pausar a execucao */
+                system("cls");
+                menu(csvfile); /* Entra em loop de execucao */
+            break;
+        }
+    }while(menuchoice != 5);
 }

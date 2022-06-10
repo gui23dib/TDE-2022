@@ -1,14 +1,15 @@
 #ifndef CSVMAIN_H_INCLUDED
 #define CSVMAIN_H_INCLUDED
 
-#define FILE_LINES 535535
-#define FILE_NAME "dados_covid_sp.csv"
-#define LINE_LENGTH 1024
-#define MAX_COLUMNS 28
-#define SEP ";"
+#include <stdio.h>
 
-char** openfile();
-char*** get_tokens(char** linha);
-void destroy(char** linhas);
+void menu(FILE *csvfile);
+int openfile(FILE *csvfile);
+int case1(FILE *csvfile);
+int case2(FILE *csvfile);
+int case3(FILE *csvfile);
+int case4(FILE *csvfile);
+void resetfunction(FILE *csvfile);
+int cmpfunc (const void * a, const void * b);
 
 #endif // CSVMAIN_H_INCLUDED

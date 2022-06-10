@@ -1,16 +1,28 @@
-#include "menu.h" /*biblioteca customizada*/
-#include "csvmain.h"
-
+/**bibliotecas padroes**/
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <locale.h>
 
-int main()
+/**bibliotecas de usuario**/
+#include "csvmain.h" /*conteudos do menu e manipulacao de dados do CSV*/
+
+/**PARTICIPANTES**/
+/*
+* Guilherrme Dib da Silva (6961269)
+* Kadish Bernardo Ribeiro da Silva (1673604)
+* Miguel Lima do Nascimento (7408743)
+* Murilo Mendes Santo Sardao (7176953)
+* Thiago de Andrade Prado (3821314)
+*/
+
+int main(void)
 {
-    char** linhas = openfile();
-    for (int i = 0; i < FILE_LINES; ++i) {
-      printf("%s\n", linhas[i]);
-    }
+    setlocale(LC_ALL, "UTF-8");
 
-    menu();
-    destroy(linhas);
-    return 0;
+    FILE *csvfile; /* Variavel de arquivo pelo stdio.h */
+
+    openfile(csvfile); /* Funcao de abertura do arquivo */
+
+    return EXIT_SUCCESS;
 }
