@@ -1,4 +1,4 @@
-# TDE-1Semestre
+# TDE-1/2Semestre
 
 ## DOWNLOAD DO CSV (DATASET)
 
