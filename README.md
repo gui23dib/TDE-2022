@@ -1,14 +1,13 @@
-# TDE-1/2Semestre
-
+# TDE2Semestre - VERSAO DE TESTES
 ## DOWNLOAD DO CSV (DATASET)
-
 ### https://github.com/seade-R/dados-covid-sp/blob/master/data/dados_covid_sp.csv
 
-## DOWNLOAD DO ARQUIVO DE VERIFICACAO
-
-### https://drive.google.com/file/d/1DZSjPVwj5mnbCjrjvvGa-b3IR-WJDf_t/view?usp=sharing
+## DOCUMENTACAO DO CODIGO
+### https://shore-armchair-215.notion.site/TDE-2-Semestre-K-way-Merge-ffd258b316e8407ca7ff6ce3c1f321a5
 
 ## EXECUCAO PELO GCC NO CMD
 
-### gcc main.c csvmain.c menu.c -o exec
-### exec.exe
+### gcc -o e1 main1.c
+### gcc -o e2 main2.c
+### gcc -o e3 main3.c
+
