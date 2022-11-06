@@ -6,7 +6,7 @@
 
 /**GRUPO TDE - BERMUDA 3G**/
 /*
-* Guilherrme Dib da Silva (6961269)
+* Guilherme Dib da Silva (6961269)
 * Kadish Bernardo Ribeiro da Silva (1673604)
 * Murilo Mendes Santo Sardao (7176953)
 * Thiago de Andrade Prado (3821314)
@@ -44,10 +44,6 @@ int main(void){
     conteudo_capturado_linha = getline(&conteudo_linha, &conteudo_linha_tamanho, arquivo_csv_base); /*extrai cabecalho*/
 
     while (conteudo_capturado_linha >= 0){
-
-        /*d_contador_linhas++;*/
-
-        /*printf("line[%06d]: chars=%06zd, buf size=%06zu, contents: %s", d_contador_linhas, conteudo_capturado_linha, conteudo_linha_tamanho, conteudo_linha); LINHA DE DEBUG DA LEITURA*/ 
         
         conteudo_capturado_linha = getline(&conteudo_linha, &conteudo_linha_tamanho, arquivo_csv_base);
 
@@ -66,13 +62,15 @@ int main(void){
 
             char conteudo_char_captura_atual[1000000];
 
-            FILE* novo_subarquivo_atual  = fopen(nome_subarquivo, "w"); /*cria o novo_subarquivo_atual com o nome atribuido anteriormente (modo de escrita write)*/
+            FILE* novo_subarquivo_atual  = fopen(nome_subarquivo, "r"); /*cria o novo_subarquivo_atual com o nome atribuido anteriormente (modo de escrita write)*/
             for(i=0 ; i<TAMANHO_SUBARQUIVOS ; i++){
                 sprintf(conteudo_char_captura_atual, "%d\n", vetor_limite_de_captura[i]);
                 fprintf(novo_subarquivo_atual, conteudo_char_captura_atual);
             }
             limitador_iteracoes = 0;
             fclose(novo_subarquivo_atual);
+
+            FILE* arquivo_temporario  = fopen("temp", "w");
         }
 
     }
