@@ -11,3 +11,8 @@
 ### gcc -o e2 main2.c
 ### gcc -o e3 main3.c
 
+## EXECUCAO DO EXEC_SCRIPT
+
+### Use o script para rodar o codigo com mais facilidade e rapidez com o codigo no terminal do git bash:
+
+### `bash exec_script.sh`
