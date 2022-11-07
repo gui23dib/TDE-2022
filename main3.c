@@ -45,16 +45,12 @@ void apagar_linha_disputa(int nome_subarquivo_vencedor){
    int conteudo_temp[TAMANHO_SUBARQUIVOS-2];
    int i = 0;
    FILE *subarquivo_atual = fopen(nome_subarquivo_vencedor_string, "r");
-   printf("check1\n");
    getline(&conteudo_linha, &conteudo_linha_tamanho, subarquivo_atual);
-   printf("check2\n");
 
    int digito_vencedor = atoi(conteudo_linha);
    char digito_vencedor_string[26];
    sprintf(digito_vencedor_string, "%d\n", digito_vencedor);
-   printf("ASDASD TA FUNCIONANDO A FUNCAO %s", digito_vencedor_string);
    FILE *arquivo_final = fopen(ARQUIVO_FINAL, "a");
-   printf("ASDASD TA FUNCIONANDO A FUNCAO %s", digito_vencedor_string);
       fprintf(arquivo_final, digito_vencedor_string);
    fclose(arquivo_final);
 
