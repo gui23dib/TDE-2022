@@ -12,7 +12,7 @@ FILE="arquivo_final.csv"
 touch $FILE
 rm -f $FILE
 
-gcc -o e3.exe main4.c
+gcc -o e3.exe maine.c
 
 ./e3.exe
 
