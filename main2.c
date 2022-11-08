@@ -15,7 +15,7 @@ int main(void){
    int numero_k_subarquivos = 0;
    int i, j;
    
-   for(i=1 ; i<=D_NUMERO_SUBARQUIVOS ; i++){
+   for(i=0 ; i<D_NUMERO_SUBARQUIVOS ; i++){
 
       char nome_subarquivo[26] ;
       sprintf(nome_subarquivo, "%d", i);

@@ -55,7 +55,6 @@ int main(void){
 
 
         if(limitador_iteracoes >= TAMANHO_SUBARQUIVOS){
-            numero_k_subarquivos++;
             printf("\nSUBARQUIVO %i CRIADO COM SUCESSO!!!\n", numero_k_subarquivos);
 
             char nome_subarquivo[26] ;
@@ -70,6 +69,8 @@ int main(void){
             }
             limitador_iteracoes = 0;
             fclose(novo_subarquivo_atual);
+
+            numero_k_subarquivos++;
         }
 
     }
