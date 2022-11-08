@@ -18,7 +18,6 @@
 #define TAMANHO_SUBARQUIVOS 4
 
 int main(void){
-    printf("COMECOU\n");
     setlocale(LC_ALL, "UTF-8");
 
     FILE *arquivo_csv_base; 
@@ -45,14 +44,12 @@ int main(void){
 
     while (conteudo_capturado_linha >= 0){
 
-        /*d_contador_linhas++;*/
-
-        /*printf("line[%06d]: chars=%06zd, buf size=%06zu, contents: %s", d_contador_linhas, conteudo_capturado_linha, conteudo_linha_tamanho, conteudo_linha); LINHA DE DEBUG DA LEITURA*/ 
+        /*printf("chars=%06zd, buf size=%06zu, contents: %s", conteudo_capturado_linha, conteudo_linha_tamanho, conteudo_linha); LINHA DE DEBUG DA LEITURA*/ 
 
         conteudo_capturado_linha = getline(&conteudo_linha, &conteudo_linha_tamanho, arquivo_csv_base);
 
         vetor_limite_de_captura[limitador_iteracoes] = atoi(conteudo_linha);
-        printf("\nLinha atual: %d\n", vetor_limite_de_captura[limitador_iteracoes]);
+        /*printf("\nLinha atual: %d\n", vetor_limite_de_captura[limitador_iteracoes]);*/
 
         limitador_iteracoes++;
 
@@ -83,6 +80,7 @@ int main(void){
     fclose(arquivo_csv_base);
     free(conteudo_linha);
 
+    printf("\n");
 
     return EXIT_SUCCESS;
 }

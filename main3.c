@@ -37,29 +37,32 @@ void apagar_linha_disputa(int nome_subarquivo_vencedor){
    char nome_subarquivo_vencedor_string[26];
    sprintf(nome_subarquivo_vencedor_string, "%d", nome_subarquivo_vencedor);
 
-   printf("ENTRORU NA FUNCAO / ARQUIVO VENCEDOR %i\n", nome_subarquivo_vencedor);
+   printf("ENTROU NA FUNCAO / ARQUIVO VENCEDOR %i\n", nome_subarquivo_vencedor);
 
    char *conteudo_linha = NULL;
    size_t conteudo_linha_tamanho = 0;
    ssize_t conteudo_capturado_linha;
    int conteudo_temp[TAMANHO_SUBARQUIVOS-2];
    int i = 0;
+
    FILE *subarquivo_atual = fopen(nome_subarquivo_vencedor_string, "r");
-   getline(&conteudo_linha, &conteudo_linha_tamanho, subarquivo_atual);
+
+   getline(&conteudo_linha, &conteudo_linha_tamanho, subarquivo_atual); /*O PROBLEMA CRASHA AQ*/
 
    int digito_vencedor = atoi(conteudo_linha);
    char digito_vencedor_string[26];
    sprintf(digito_vencedor_string, "%d\n", digito_vencedor);
+
    FILE *arquivo_final = fopen(ARQUIVO_FINAL, "a");
       fprintf(arquivo_final, digito_vencedor_string);
    fclose(arquivo_final);
 
-   while (conteudo_capturado_linha >= 0){
+   do{
       conteudo_capturado_linha = getline(&conteudo_linha, &conteudo_linha_tamanho, subarquivo_atual);
       conteudo_temp[i] = atoi(conteudo_linha);
       printf("NOVAS LINHAS TEMPORARIAS %i : %i\n", i+1, conteudo_temp[i]);
       i++;
-   }
+   }while (conteudo_capturado_linha > 0);
    fclose(subarquivo_atual);
 
    FILE *arquivo_temporario = fopen("temp", "w");
@@ -74,6 +77,22 @@ void apagar_linha_disputa(int nome_subarquivo_vencedor){
 
    remove(nome_subarquivo_vencedor_string);
    rename("temp", nome_subarquivo_vencedor_string);
+
+   /*arquivo_final = fopen(nome_subarquivo_vencedor_string, "r");
+   char string[100];
+   fgets(string, 100, arquivo_final);
+   fgets(string, 100, arquivo_final);
+   char comp = "0";
+   if(string == comp){
+      printf("OPS ESSE E O UTLIMO\n");
+      fclose(arquivo_final);
+      if (remove(nome_subarquivo_vencedor_string)) {
+      printf("O ARQUIVO %i FOI EXCLUIDO.\n", nome_subarquivo_vencedor); 
+   } else {
+      printf("O ARQUIVO %i NAAAAO FOI EXCLUIDO\n");
+   }
+   }
+   fclose(arquivo_final);*/
    /*int result = rename("temp", nome_subarquivo_vencedor_string);
    if (result == 0) {
       printf("O ARQUIVO TEMPORARIO FOI RENOMEADO.\n"); 

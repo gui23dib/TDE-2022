@@ -21,7 +21,7 @@ int main(void){
       sprintf(nome_subarquivo, "%d", i);
 
       FILE* novo_subarquivo_atual  = fopen(nome_subarquivo, "r+");
-      printf("\nSUBARQUIVO %i ABERTO COM SUCESSO!!!\n", i); /*DEBUG*/
+      printf("\nSUBARQUIVO %i ABERTO\n", i); /*DEBUG*/
 
       char conteudo_subarquivo_string[TAMANHO_SUBARQUIVOS][MAX_LINE];
       int conteudo_subarquivo_int[TAMANHO_SUBARQUIVOS];
@@ -54,9 +54,11 @@ int main(void){
       }
 
       fclose(novo_subarquivo_atual);
-      printf("\tORDENADO COM SUCESSO!!!\n", i);
+      printf("\tORDENADO COM SUCESSO!\n", i);
 
    }
+
+   printf("\n");
 
    return EXIT_SUCCESS;
 }
