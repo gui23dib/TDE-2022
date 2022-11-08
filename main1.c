@@ -11,11 +11,11 @@
 * Murilo Mendes Santo Sardao (7176953)
 * Thiago de Andrade Prado (3821314)
 * Larissa Pena
-* Victor Eduardo
+* Victor Eduardo Rodrigues de Abreu e Silva (8576891)
 */
 
-#define ARQUIVO_BASE "teste.csv"
-#define TAMANHO_SUBARQUIVOS 4
+#define ARQUIVO_BASE "dados_covid_sp_re.csv"
+#define TAMANHO_SUBARQUIVOS 10
 
 int main(void){
     setlocale(LC_ALL, "UTF-8");
@@ -35,7 +35,7 @@ int main(void){
     /*int d_contador_linhas = 0;*/
     ssize_t conteudo_capturado_linha;
 
-    int vetor_limite_de_captura[TAMANHO_SUBARQUIVOS];
+    char vetor_limite_de_captura[TAMANHO_SUBARQUIVOS][1024];
     int limitador_iteracoes = 0;
     int numero_k_subarquivos = 0;
     int i = 0;
@@ -48,7 +48,7 @@ int main(void){
 
         conteudo_capturado_linha = getline(&conteudo_linha, &conteudo_linha_tamanho, arquivo_csv_base);
 
-        vetor_limite_de_captura[limitador_iteracoes] = atoi(conteudo_linha);
+        strcpy(vetor_limite_de_captura[limitador_iteracoes], conteudo_linha);
         /*printf("\nLinha atual: %d\n", vetor_limite_de_captura[limitador_iteracoes]);*/
 
         limitador_iteracoes++;
@@ -61,12 +61,9 @@ int main(void){
             char nome_subarquivo[26] ;
             sprintf(nome_subarquivo, "%d", numero_k_subarquivos); /*transforma o inteiro do contador numero_k_subarquivos em uma string em nome_subarquivo*/
 
-            char conteudo_char_captura_atual[1000000];
-
             FILE* novo_subarquivo_atual  = fopen(nome_subarquivo, "w"); /*cria o novo_subarquivo_atual com o nome atribuido anteriormente (modo de escrita write)*/
             for(i=0 ; i<TAMANHO_SUBARQUIVOS ; i++){
-                sprintf(conteudo_char_captura_atual, "%d\n", vetor_limite_de_captura[i]);
-                fprintf(novo_subarquivo_atual, conteudo_char_captura_atual);
+                fprintf(novo_subarquivo_atual, vetor_limite_de_captura[i]);
             }
             limitador_iteracoes = 0;
             fclose(novo_subarquivo_atual);
