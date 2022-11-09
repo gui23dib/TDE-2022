@@ -34,9 +34,6 @@ int main(void){
          char * token = strtok(conteudo_subarquivo_string[j], ";");
          token = strtok(NULL, ";");
          strcpy(conteudo_subarquivo_coluna[j], token);
-
-
-         printf("\n%s\n", token);
       }
       fclose(novo_subarquivo_atual);
 
