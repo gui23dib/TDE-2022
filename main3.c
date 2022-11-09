@@ -30,7 +30,7 @@ int contar_linhas(char *filename) {
 
 void iteracao_arvore(){
 
-   int cria_arquivo_stack(char *mensagem, int tipo){
+   int cria_arquivo_stack(char *mensagem, int tipo) {
       FILE *arquivo_disputa_atual;
       arquivo_disputa_atual = fopen("stack_disputa", "a");
       if(tipo == 0){ /*1 para normal e 0 para fim de arquivo*/
