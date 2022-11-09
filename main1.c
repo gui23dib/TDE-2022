@@ -42,8 +42,7 @@ int main(void){
 
     conteudo_capturado_linha = getline(&conteudo_linha, &conteudo_linha_tamanho, arquivo_csv_base); /*extrai cabecalho*/
 
-    while (conteudo_capturado_linha >= 0){
-
+    do{
         /*printf("chars=%06zd, buf size=%06zu, contents: %s", conteudo_capturado_linha, conteudo_linha_tamanho, conteudo_linha); LINHA DE DEBUG DA LEITURA*/ 
 
         conteudo_capturado_linha = getline(&conteudo_linha, &conteudo_linha_tamanho, arquivo_csv_base);
@@ -68,8 +67,7 @@ int main(void){
             limitador_iteracoes = 0;
             fclose(novo_subarquivo_atual);
         }
-
-    }
+    }while (conteudo_capturado_linha >= 0);
 
     /* limpeza do buffer das variaveis*/
     free(conteudo_linha);

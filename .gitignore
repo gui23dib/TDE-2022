@@ -51,6 +51,7 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+*.vscode
 dados_covid_sp.csv
 dados_covid_sp_re.csv
 codigoibgever.txt
