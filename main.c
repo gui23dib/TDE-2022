@@ -17,7 +17,7 @@
 /**definicao de constantes**/
 #define ARQUIVO_BASE "dados_covid_sp.csv"
 #define SEPARADOR ";"
-#define TAMANHO_SUBARQUIVOS 512
+#define TAMANHO_SUBARQUIVOS 365
 #define MAX_LINE 2048
 
 #define true 1
@@ -70,10 +70,9 @@ int separacao_arquivos(void){
       /*abre um arquivo temporario e adiciona a nova linha da iteracao*/
 
       if(contar_linhas(nome_subarquivo) == TAMANHO_SUBARQUIVOS){ 
-         //printf("ARQUIVO %i CRIADO E PREENCHIDO CORRETAMENTE\n", i); DEBUG ================================
          i++;
       } /*avanca o subarquivo usado a cada 10 linhas no subarquivo atual*/
-      
+
    }while(!feof(arquivo_csv_base));
 
    fclose(arquivo_csv_base);
@@ -101,11 +100,10 @@ int ordenacao_subarquivo(int subarquivo){
    const int tamanho_subarquivo = contar_linhas(nome_subarquivo);
 
    FILE* novo_subarquivo_atual  = fopen(nome_subarquivo, "r+");
-   //printf("\nSUBARQUIVO %i ABERTO\n", subarquivo);  DEBUG ================================
 
    char conteudo_subarquivo_string[MAX_LINE]; /*dado descartado da separacao de colunas*/
    char conteudo_subarquivo_seguro[tamanho_subarquivo][MAX_LINE]; /*dado descartado da separacao de colunas*/
-   char conteudo_subarquivo_coluna[tamanho_subarquivo][MAX_LINE];
+   char conteudo_subarquivo_coluna[tamanho_subarquivo][MAX_LINE]; //TODO: SEGMENTATION FAULT ERROR (RESOLVIDO EM TAMANHO_SUBARQUIVOS = 365)
 
    for(i=0 ; i < tamanho_subarquivo ; i++){
       fgets(conteudo_subarquivo_string, MAX_LINE, novo_subarquivo_atual);
