@@ -15,7 +15,7 @@
 */
 
 /**definicao de constantes**/
-#define ARQUIVO_BASE "dados_covid_sp.csv"
+#define ARQUIVO_BASE "dados_covid_sp_teste.csv"
 #define SEPARADOR ";"
 #define TAMANHO_SUBARQUIVOS 365
 #define MAX_LINE 2048
