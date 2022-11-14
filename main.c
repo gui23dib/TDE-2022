@@ -6,7 +6,7 @@
 
 /**GRUPO TDE - BERMUDA 3G**/
 /*
-* Guilherrme Dib da Silva (6961269)
+* Guilherme Dib da Silva (6961269)
 * Kadish Bernardo Ribeiro da Silva (1673604)
 * Murilo Mendes Santo Sardao (7176953)
 * Thiago de Andrade Prado (3821314)

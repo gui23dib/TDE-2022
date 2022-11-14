@@ -4,10 +4,10 @@
 #include <locale.h>
 
 #define TAMANHO_SUBARQUIVOS 365
-#define D_NUMERO_SUBARQUIVOS 4
+#define D_NUMERO_SUBARQUIVOS 5
 #define MAX_LINE 2048
 
-#define ARQUIVO_FINAL "arquivo_final.csv"
+#define ARQUIVO_FINAL "ARQUIVO_FINAL.csv"
 
 #define true 1
 #define false 0
@@ -34,25 +34,32 @@ int contar_linhas(char *filename) {
 }
 
 const char* torneio_arvore(){
-   return "ISSO E UM VENCEDOR\n";
+   FILE* subarquivo_atual  = fopen( "0", "r+");
+
+   char *line = NULL;   /*ponteiro do conteudo da linha lida*/
+   size_t len = 0;
+   ssize_t read;  /*tamanho da linha lida*/
+   read = getline(&line, &len, subarquivo_atual);
+
+   fclose(subarquivo_atual);
+
+   return line; /*retorna o conteudo da linha lida*/
 }
 
 int main(void) {
-   int linhas_arquivo_final, i=0;
-   FILE*fp = fopen("ARQUIVO_FINAL","w");
+   int linhas_arquivo_final;
+   const int total_linhas_soma_subarquivos = (((D_NUMERO_SUBARQUIVOS-1)*TAMANHO_SUBARQUIVOS) + (contar_linhas("4")+1));
+   FILE*fp = fopen(ARQUIVO_FINAL,"w");
    fclose(fp);
-   char vencedor_arvore[MAX_LINE]; 
 
    do{
-      i++;
-      fp = fopen("ARQUIVO_FINAL","a");
-      /*sprintf(conteudo_atual, "%d\n", i);*/
+      fp = fopen(ARQUIVO_FINAL,"a");
       fprintf(fp, torneio_arvore());
       fclose(fp);
-      linhas_arquivo_final = contar_linhas("ARQUIVO_FINAL");
+      linhas_arquivo_final = contar_linhas(ARQUIVO_FINAL);
       printf("%i\n", linhas_arquivo_final);
-   }while(linhas_arquivo_final < (((D_NUMERO_SUBARQUIVOS-1)*TAMANHO_SUBARQUIVOS) + (contar_linhas("4")-1)));
-
+   }while(linhas_arquivo_final < total_linhas_soma_subarquivos);
+   /*while para verificar que arquvio final tenha um numero de linhas igual ao numero total de linhas de todos os subarquivos*/
 
    return EXIT_SUCCESS;
 }
