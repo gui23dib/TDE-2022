@@ -35,6 +35,26 @@ int contar_linhas(char *filename) {
    return linhas;
 }
 
+void apagar_primeira_linha(char * nome_subarquivo){
+   FILE * input = fopen(nome_subarquivo, "r");
+   FILE * output = fopen("temp", "w");
+   char texto[2048] = "";
+
+   fgets(texto, 2048, input);
+   printf("LINHA APAGADA: %s\n", texto);
+   memset(texto, 0, sizeof(char) * 2048);
+
+   while(fgets(texto, 2048, input) != NULL){
+      fputs(texto, output);
+      memset(texto, 0, sizeof(char) * 2048);
+   }
+   fclose(input);
+   fclose(output);
+
+   remove(nome_subarquivo);
+   rename("temp", nome_subarquivo);
+}
+
 const char* ler_primeira_linha(int num_subarquivo){
    char nome_subarquivo[26];
    sprintf(nome_subarquivo, "%d", num_subarquivo);
@@ -70,7 +90,7 @@ const char* torneio_arvore(){
       strcpy(conteudo_subarquivo_coluna[i], token);
    }
 
-   char* menor_numero = conteudo_subarquivos[0];
+   char* menor_numero = conteudo_subarquivo_coluna[0];
    int int_arquivo_vencedor = 0;
 
    for(i = 0 ; i < D_NUMERO_SUBARQUIVOS ; i++){
@@ -80,7 +100,11 @@ const char* torneio_arvore(){
       }
    }
 
-   char* conteudo_vencedor = conteudo_subarquivo_coluna[int_arquivo_vencedor];
+   char* conteudo_vencedor = conteudo_subarquivo_seguro[int_arquivo_vencedor];
+   char nome_subarquivo_vencedor[26];
+   sprintf(nome_subarquivo_vencedor, "%d", int_arquivo_vencedor);
+   printf("SUBARQUIVO VENCEDOR: %s\n", nome_subarquivo_vencedor);
+   apagar_primeira_linha(nome_subarquivo_vencedor);
    printf("%s\n", conteudo_vencedor);
 
    return conteudo_vencedor; /*retorna o conteudo da linha lida*/
@@ -92,6 +116,7 @@ int main(void) {
    const int total_linhas_arquivo_base = contar_linhas(ARQUIVO_BASE);
    
    FILE*fp = fopen(ARQUIVO_FINAL,"w");
+   verificar_arquivo(fp);
    fclose(fp);
 
    do{
@@ -99,7 +124,7 @@ int main(void) {
       fprintf(fp, torneio_arvore());
       fclose(fp);
       linhas_arquivo_final = contar_linhas(ARQUIVO_FINAL);
-      //printf("%i\n", linhas_arquivo_final);
+      printf("%i\n", linhas_arquivo_final);
    }while(linhas_arquivo_final < total_linhas_soma_subarquivos);
    /*while para verificar que arquvio final tenha um numero de linhas igual ao numero total de linhas de todos os subarquivos*/
 
