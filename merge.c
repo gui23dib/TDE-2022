@@ -6,6 +6,7 @@
 #define TAMANHO_SUBARQUIVOS 365
 #define D_NUMERO_SUBARQUIVOS 5
 #define MAX_LINE 2048
+#define SEPARADOR ";"
 
 #define ARQUIVO_FINAL "ARQUIVO_FINAL.csv"
 #define ARQUIVO_BASE "dados_covid_sp_teste.csv"
@@ -56,12 +57,31 @@ const char* ler_primeira_linha(int num_subarquivo){
 const char* torneio_arvore(){
    char conteudo_subarquivos[D_NUMERO_SUBARQUIVOS][MAX_LINE]; 
    int i;
+
+   char conteudo_subarquivo_seguro[TAMANHO_SUBARQUIVOS][MAX_LINE]; /*dado descartado da separacao de colunas*/
+   char conteudo_subarquivo_coluna[TAMANHO_SUBARQUIVOS][MAX_LINE];
+
    for(i = 0 ; i < D_NUMERO_SUBARQUIVOS ; i++){
       strcpy(conteudo_subarquivos[i], ler_primeira_linha(i));
-      printf("%s\n", conteudo_subarquivos[i]);
+      strcpy(conteudo_subarquivo_seguro[i], conteudo_subarquivos[i]);
+
+      char * token = strtok(conteudo_subarquivos[i], ";");
+      token = strtok(NULL, SEPARADOR);
+      strcpy(conteudo_subarquivo_coluna[i], token);
    }
 
-   char* conteudo_vencedor = conteudo_subarquivos[0];
+   char* menor_numero = conteudo_subarquivos[0];
+   int int_arquivo_vencedor = 0;
+
+   for(i = 0 ; i < D_NUMERO_SUBARQUIVOS ; i++){
+      if(atoi(conteudo_subarquivo_coluna[i]) < atoi(menor_numero)){
+         menor_numero = conteudo_subarquivos[i];
+         int_arquivo_vencedor = i;
+      }
+   }
+
+   char* conteudo_vencedor = conteudo_subarquivo_coluna[int_arquivo_vencedor];
+   printf("%s\n", conteudo_vencedor);
 
    return conteudo_vencedor; /*retorna o conteudo da linha lida*/
 }
