@@ -1,10 +1,10 @@
 # TDE 2 semestre
 ## DOWNLOAD DO ARQUIVO CSV!!!
 ### https://drive.google.com/file/d/1tc6Y4gLzF8YWKUNNcuTOzwxS4zLCpEiD/view?usp=sharing
-1. Selecione o arquivo a escola (recomendado o uso do arquivo "dataset_rapido.csv")
-2. Baixe o arquivo na pasta do projeto no seu PC
-3. Renomeie o arquivo para "dataset.csv"
-4. Execute o codigo e espere os resultados no "arquivo_final.csv"!
+1. Selecione o arquivo desejado de acordo com o tamanho em numero de linhas (recomendado o uso do arquivo "dataset_rapido.csv").
+2. Baixe o arquivo .csv na pasta do projeto no seu PC.
+3. Renomeie o arquivo para "dataset.csv".
+4. Execute o codigo e espere os resultados na saida "arquivo_final.csv".
 
 ## EXECUCAO PELO GCC NO CMD
 
