@@ -235,6 +235,8 @@ const char* torneio_arvore(int numero_subarquivos){
       if(strcmp(ler_primeira_linha(i, numero_subarquivos), "---") == 0){
          continue;
       }
+      /*verifica o retorno do arquivo atual para nulidades (caso o arquivo esteja para ser apagado) e pula a iteracao*/
+
       strcpy(conteudo_subarquivos[i], ler_primeira_linha(i, numero_subarquivos));
       strcpy(conteudo_subarquivo_seguro[i], conteudo_subarquivos[i]);
 
@@ -242,6 +244,7 @@ const char* torneio_arvore(int numero_subarquivos){
       token = strtok(NULL, SEPARADOR);
       strcpy(conteudo_subarquivo_coluna[i], token);
    }
+   /*separa e atribui a linha inteira a variavel segura e a coluna escolhida na variavel coluna*/
 
    char* menor_numero = conteudo_subarquivo_coluna[0];
    int int_arquivo_vencedor = 0;
@@ -252,12 +255,14 @@ const char* torneio_arvore(int numero_subarquivos){
          int_arquivo_vencedor = i;
       }
    }
+   /*define e atribui os menores numeros e o indicice do menor valor*/
 
    char* conteudo_vencedor = conteudo_subarquivo_seguro[int_arquivo_vencedor];
    char nome_subarquivo_vencedor[26];
    sprintf(nome_subarquivo_vencedor, "%d", int_arquivo_vencedor);
    printf("SUBARQUIVO VENCEDOR: %s\n", nome_subarquivo_vencedor);
    apagar_primeira_linha(nome_subarquivo_vencedor, numero_subarquivos);
+   /*transfere o indice do arquivo de menor valor na coluna em string para chamar a funcao apagar_primeira_linha()*/
 
    return conteudo_vencedor; /*retorna o conteudo da linha lida*/
 }
@@ -274,6 +279,7 @@ int merge_arquivos(int numero_subarquivos){
       verificar_arquivo(fp);
       fprintf(fp, "nome_munic;codigo_ibge;datahora;casos;casos_novos;casos_pc;casos_mm7d;obitos;obitos_novos;obitos_pc;obitos_mm7d;nome_drs;cod_drs;pop;semana_epidem\n");
    fclose(fp);
+   /*abre o arquivo em "write" deletando conteudo antigo e imprimindo o cabecalho do dataset*/
 
    do{
       fp = fopen(ARQUIVO_FINAL,"a");
@@ -296,13 +302,15 @@ int main(){
       ordenacao_subarquivo(i);
    }
    printf("ARQUIVOS ORDENADOS COM SUCESSO!\n");
+   /* FIM ETAPAS DE DIVISAO */
 
+   /* COMECO DAS ETAPAS DE FUNDICAO */
    printf("INICIANDO ARVORE DE TORNEIO PARA FUNDIR ARQUIVOS...\n");
    merge_arquivos(i);
    printf("\nO ARQUIVO FINAL FOI ORDENADO COM SUCESSO!\n");
-   /* FIM ETAPAS DE DIVISAO */
+   /* FIM DAS ETAPAS DE FUNDICAO */
 
-   remove("0");
+   remove("0"); /* deleta arquivo residual */
 
    return EXIT_SUCCESS;
 }
