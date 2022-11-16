@@ -1,6 +1,9 @@
 # TDE 2 semestre
-Documento de pesquisa e ampliação teórica:
+### Documento de pesquisa e ampliação teórica:
 https://docs.google.com/document/d/1T1PqEEWqa4Kd_N8D1Px5yo-X6AYg-IUz3D3DtJafUJA/edit?usp=sharing
+
+### Projeto disponível em:
+https://github.com/gui23dib/TDE-1-2-Semestre
 
 
 ## DOWNLOAD DO ARQUIVO CSV!!!
