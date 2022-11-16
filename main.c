@@ -19,8 +19,8 @@
 #define TAMANHO_SUBARQUIVOS 365
 #define MAX_LINE 2048
 
-#define ARQUIVO_FINAL "ARQUIVO_FINAL.csv"
-#define ARQUIVO_BASE "dados_covid_sp_teste.csv"
+#define ARQUIVO_FINAL "arquivo_final.csv"
+#define ARQUIVO_BASE "dataset.csv"
 
 #define true 1
 #define false 0
@@ -161,7 +161,7 @@ void apagar_primeira_linha(char * nome_subarquivo, int numero_subarquivos){
    char texto[MAX_LINE] = "";
 
    fgets(texto, MAX_LINE, input);
-   printf("LINHA APAGADA: %s\n", texto);
+   printf("LINHA SELECIONADA: %s\n", texto);
    memset(texto, 0, sizeof(char) * MAX_LINE);
    /*abre o arquivo e retira somente a primeira linha*/
 
@@ -225,11 +225,11 @@ const char* ler_primeira_linha(int num_subarquivo, int numero_subarquivos){
 }
 
 const char* torneio_arvore(int numero_subarquivos){
-   char conteudo_subarquivos[numero_subarquivos-arquivos_apagados][MAX_LINE]; 
+   char conteudo_subarquivos[numero_subarquivos-arquivos_apagados][MAX_LINE]; /*dado descartado da separacao de colunas*/
    int i;
 
-   char conteudo_subarquivo_seguro[TAMANHO_SUBARQUIVOS][MAX_LINE]; /*dado descartado da separacao de colunas*/
-   char conteudo_subarquivo_coluna[TAMANHO_SUBARQUIVOS][MAX_LINE];
+   char conteudo_subarquivo_seguro[TAMANHO_SUBARQUIVOS][MAX_LINE]; /*dado seguro inteiro da linha atual*/
+   char conteudo_subarquivo_coluna[TAMANHO_SUBARQUIVOS][MAX_LINE]; /*dado especifico da coluna*/
 
    for(i = 0 ; i < numero_subarquivos-arquivos_apagados ; i++){
       if(strcmp(ler_primeira_linha(i, numero_subarquivos), "---") == 0){
@@ -269,8 +269,10 @@ int merge_arquivos(int numero_subarquivos){
    const int total_linhas_soma_subarquivos = (numero_subarquivos-1)*TAMANHO_SUBARQUIVOS + contar_linhas(nome_ultimo_subarquivo)+1;
    const int total_linhas_arquivo_base = contar_linhas(ARQUIVO_BASE);
    
-   FILE*fp = fopen(ARQUIVO_FINAL,"w");
-   verificar_arquivo(fp);
+   FILE*fp;
+   fp = fopen(ARQUIVO_FINAL,"w");
+      verificar_arquivo(fp);
+      fprintf(fp, "nome_munic;codigo_ibge;datahora;casos;casos_novos;casos_pc;casos_mm7d;obitos;obitos_novos;obitos_pc;obitos_mm7d;nome_drs;cod_drs;pop;semana_epidem\n");
    fclose(fp);
 
    do{
@@ -278,7 +280,7 @@ int merge_arquivos(int numero_subarquivos){
       fprintf(fp, torneio_arvore(numero_subarquivos));
       fclose(fp);
       linhas_arquivo_final = contar_linhas(ARQUIVO_FINAL);
-   }while(linhas_arquivo_final < total_linhas_soma_subarquivos);
+   }while(linhas_arquivo_final < total_linhas_soma_subarquivos+1);
    /*while para verificar que arquvio final tenha um numero de linhas igual ao numero total de linhas de todos os subarquivos*/
 
    return EXIT_SUCCESS;
@@ -297,7 +299,7 @@ int main(){
 
    printf("INICIANDO ARVORE DE TORNEIO PARA FUNDIR ARQUIVOS...\n");
    merge_arquivos(i);
-   printf("\nO ARQUIVO FINAL ESTA COMPLETAMENTE ORDENADO!\n");
+   printf("\nO ARQUIVO FINAL FOI ORDENADO COM SUCESSO!\n");
    /* FIM ETAPAS DE DIVISAO */
 
    remove("0");
