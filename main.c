@@ -75,6 +75,7 @@ int separacao_arquivos(void){
       /*abre um arquivo temporario e adiciona a nova linha da iteracao*/
 
       if(contar_linhas(nome_subarquivo) == TAMANHO_SUBARQUIVOS){ 
+         printf("Separando arquivo %i...\n", i);
          i++;
       } /*avanca o subarquivo usado a cada 10 linhas no subarquivo atual*/
 
