@@ -6,11 +6,10 @@
 3. Renomeie o arquivo para "dataset.csv"
 4. Execute o codigo e espere os resultados no "arquivo_final.csv"!
 
-## DOCUMENTACAO DO CODIGO
-### https://shore-armchair-215.notion.site/TDE-2-Semestre-K-way-Merge-ffd258b316e8407ca7ff6ce3c1f321a5
-
 ## EXECUCAO PELO GCC NO CMD
 
 ### gcc -o main.exe main.c
 ### ./main.exe
 
+## DOCUMENTACAO DO CODIGO
+### https://shore-armchair-215.notion.site/TDE-2-Semestre-K-way-Merge-ffd258b316e8407ca7ff6ce3c1f321a5
