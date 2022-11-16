@@ -1,5 +1,7 @@
 # TDE 2 semestre
+Documento de pesquisa e ampliação teórica:
 https://docs.google.com/document/d/1T1PqEEWqa4Kd_N8D1Px5yo-X6AYg-IUz3D3DtJafUJA/edit?usp=sharing
+
 
 ## DOWNLOAD DO ARQUIVO CSV!!!
 ### https://drive.google.com/drive/folders/1uoWt9KLPuLLFLrZg_FdrJWcvfd7sJ8fI?usp=sharing
