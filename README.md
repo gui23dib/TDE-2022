@@ -1,4 +1,4 @@
-# TDE2Semestre
+# TDE 2 semestre
 ## DOWNLOAD DO ARQUIVO CSV!!!
 ### https://drive.google.com/file/d/1tc6Y4gLzF8YWKUNNcuTOzwxS4zLCpEiD/view?usp=sharing
 1. Selecione o arquivo a escola (recomendado o uso do arquivo "dataset_rapido.csv")
