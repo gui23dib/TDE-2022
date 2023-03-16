@@ -17,6 +17,3 @@ https://github.com/gui23dib/TDE-1-2-Semestre
 
 ```gcc -o main.exe main.c```
 ```./main.exe```
-
-## DOCUMENTACAO DO CODIGO
-### https://shore-armchair-215.notion.site/TDE-2-Semestre-K-way-Merge-ffd258b316e8407ca7ff6ce3c1f321a5
